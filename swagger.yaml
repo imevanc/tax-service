@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Transaction API
+  version: 1.0.0
+paths:
+  /transactions:
+    post:
+      summary: Ingest a transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SalesEvent'
+                - $ref: '#/components/schemas/TaxPaymentEvent'
+      responses:
+        '202':
+          description: Transaction ingested successfully
+        '400':
+          description: Invalid payload
+        '500':
+          description: Internal server error
+
+  /tax-position:
+    get:
+      summary: Get tax position
+      parameters:
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: The date up to which the tax position is calculated (ISO 8601 format)
+      responses:
+        '200':
+          description: Tax position calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                    format: date-time
+                  taxPosition:
+                    type: number
+        '400':
+          description: Invalid date parameter
+        '500':
+          description: Internal server error
+
+  /sale:
+    patch:
+      summary: Amend a sale
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleAmendment'
+      responses:
+        '202':
+          description: Sale amended successfully
+        '400':
+          description: Invalid amendment payload
+        '500':
+          description: Internal server error
+
+  /generate-test-data:
+    post:
+      summary: Generate test data
+      responses:
+        '201':
+          description: Test data generated successfully
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    TaxPaymentEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+        date:
+          type: string
+          format: date-time
+        amount:
+          type: number
+      required:
+        - eventType
+        - date
+        - amount
+
+    SaleAmendment:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        invoiceId:
+          type: string
+        itemId:
+          type: string
+        cost:
+          type: number
+        taxRate:
+          type: number
+      required:
+        - eventType
+        - date
+        - invoiceId
+        - items
+
+    SalesEvent:
+      type: object
+      properties:
+        eventType:
+          type: string
+        date:
+          type: string
+          format: date-time
+        invoiceId:
+          type: string
+        items:
+          $ref: '#/components/schemas/Item'
+      required:
+        - eventType
+        - date
+        - invoiceId
+        - items
+
+    Item:
+      type: object
+      properties:
+        itemId:
+          type: string
+        cost:
+          type: number
+        taxRate:
+          type: number
+      required:
+        - itemId
+        - cost
+        - taxRate
