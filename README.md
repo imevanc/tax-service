@@ -12,6 +12,10 @@ calculate tax positions, and amend sales.
 - Amend sales
 - Generate test data
 
+## Deployed Version
+
+The deployed version of the API is available on [tax-service-render.com](https://tax-service-tc4z.onrender.com).
+
 ## Installation
 
 1. Clone the repository:
@@ -43,7 +47,8 @@ The project runs on port 3000.
 
 ## Swagger UI
 
-You can use open-swagger-ui to see the Swagger file on port 3355.
+You can use open-swagger-ui to see the Swagger file on port 3355 - http://localhost:3355/swagger-doc
+.
 
 ## Database
 
