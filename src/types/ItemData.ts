@@ -1,5 +1,5 @@
 export type ItemData = {
-    itemId: string;
-    cost: number;
-    taxRate: number;
+  itemId: string;
+  cost: number;
+  taxRate: number;
 };
