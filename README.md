@@ -50,6 +50,10 @@ The project runs on port 3000.
 You can use open-swagger-ui to see the Swagger file on port 3355 - http://localhost:3355/swagger-doc
 .
 
+## Dependency Management
+
+This project uses Renovate for dependency management.
+
 ## Database
 
 The database is deployed on render.com and uses PostgreSQL.
