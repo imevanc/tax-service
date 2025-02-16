@@ -1,2 +1,2 @@
-export {initDatabase} from "./initDatabase"
-export {pool} from "./pool"
+export { initDatabase } from "./initDatabase";
+export { pool } from "./pool";

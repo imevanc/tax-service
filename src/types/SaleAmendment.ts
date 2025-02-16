@@ -1,7 +1,7 @@
 export type SaleAmendment = {
-    date: string;
-    invoiceId: string;
-    itemId: string;
-    cost: number;
-    taxRate: number;
+  date: string;
+  invoiceId: string;
+  itemId: string;
+  cost: number;
+  taxRate: number;
 };

@@ -1,9 +1,9 @@
-import {pool} from "./pool";
+import { pool } from "./pool";
 
 export const initDatabase = async (): Promise<void> => {
-    const client = await pool.connect();
-    try {
-        await client.query(`
+  const client = await pool.connect();
+  try {
+    await client.query(`
             CREATE TABLE IF NOT EXISTS transactions
             (
                 id
@@ -20,7 +20,7 @@ export const initDatabase = async (): Promise<void> => {
             )
         `);
 
-        await client.query(`
+    await client.query(`
             CREATE TABLE IF NOT EXISTS amendments
             (
                 id
@@ -43,11 +43,11 @@ export const initDatabase = async (): Promise<void> => {
             )
         `);
 
-        console.log('[DB] Database initialised successfully');
-    } catch (err) {
-        console.error('[DB] Error initialising database:', err);
-        throw err;
-    } finally {
-        client.release();
-    }
+    console.log("[DB] Database initialised successfully");
+  } catch (err) {
+    console.error("[DB] Error initialising database:", err);
+    throw err;
+  } finally {
+    client.release();
+  }
 };
