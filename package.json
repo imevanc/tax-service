@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "express": "^5.0.0",
     "open-swagger-ui": "^1.2.0",
     "pg": "^8.10.0"
   },
